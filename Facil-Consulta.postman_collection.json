@@ -59,7 +59,7 @@ localhost/docs/api
 ```
 
 ## Postman Collection
-Na raiz do projeto, dentro da pasta `/postman`, você encontrará o arquivo da collection do Postman com todas as rotas da API. Para utilizar:
+Na raiz do projeto você encontrará o arquivo `Facil-Consulta.postman_collection.json` com todas as rotas da API. Para utilizar:
 
 1. Abra o Postman
 2. Clique em Import
