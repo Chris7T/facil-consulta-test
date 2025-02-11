@@ -11,10 +11,17 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
+/**
+ * @tags Usuário
+ */
 class CadastrarController extends Controller
 {
     public function __construct(private readonly CadastrarService $cadastrarService) {}
 
+    /**
+     * Cadastro de usuário
+     * 
+     */
     public function __invoke(CadastrarRequest $request): JsonResponse|Response
     {
         try {

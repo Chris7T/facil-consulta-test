@@ -12,10 +12,18 @@ use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 use Exception;
 
+/**
+ * @tags Paciente
+ */
 class PacienteCriarController extends Controller
 {
     public function __construct(private readonly PacienteCriarService $pacienteCriarService) {}
 
+    /**
+     * Criar paciente
+     * 
+     * @response PacienteResource
+     */
     public function __invoke(PacienteCriarRequest $request): JsonResponse
     {
         try {

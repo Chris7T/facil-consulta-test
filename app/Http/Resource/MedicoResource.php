@@ -13,6 +13,7 @@ class MedicoResource extends JsonResource
             'nome' => $this->nome,
             'especialidade' => $this->especialidade,
             'cidade_id' => $this->cidade_id,
+            'cidade_nome' => $this->cidade_nome,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

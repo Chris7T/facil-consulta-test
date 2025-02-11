@@ -10,11 +10,20 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Pagination\LengthAwarePaginator;
 
+/**
+ * @tags Cidade
+ */
 class CidadeListarController
 {
     public function __construct(private readonly CidadeListarService $cidadeListarService) {}
 
+    /**
+     * Listar Cidades
+     * 
+     * @response AnonymousResourceCollection<LengthAwarePaginator<CidadeResource>>
+     */
     public function __invoke(CidadeListarRequest $request): AnonymousResourceCollection|JsonResponse
     {
         try {

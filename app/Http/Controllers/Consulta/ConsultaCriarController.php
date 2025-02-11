@@ -13,10 +13,18 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
+/**
+ * @tags Consulta
+ */
 class ConsultaCriarController extends Controller
 {
     public function __construct(private readonly ConsultaCriarService $consultaCriarService) {}
 
+    /**
+     * Criar consulta
+     * 
+     * @response ConsultaResource
+     */
     public function __invoke(ConsultaCriarRequest $request): JsonResponse|ConsultaResource
     {
         try {

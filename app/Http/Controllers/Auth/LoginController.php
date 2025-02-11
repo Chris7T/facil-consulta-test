@@ -11,10 +11,16 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
+/**
+ * @tags Usuário
+ */
 class LoginController extends Controller
 {
     public function __construct(private readonly LoginService $loginService) {}
 
+    /**
+     * Login de usuário
+     */
     public function __invoke(LoginRequest $request): JsonResponse
     {
         try {

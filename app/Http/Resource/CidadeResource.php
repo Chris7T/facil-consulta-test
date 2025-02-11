@@ -11,7 +11,6 @@ class CidadeResource extends JsonResource
         return [
             'id' => $this->id,
             'nome' => $this->nome,
-            'cidade_nome' => $this->cidade_nome,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

@@ -11,10 +11,17 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
+/**
+ * @tags Médico
+ */
 class MedicoCriarController extends Controller
 {
     public function __construct(private readonly MedicoCriarService $medicoCriarService) {}
 
+    /**
+     * Criar médico
+     * 
+     */
     public function __invoke(MedicoCriarRequest $request): JsonResponse|Response
     {
         try {

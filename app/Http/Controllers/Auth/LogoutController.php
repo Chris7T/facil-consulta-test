@@ -9,10 +9,16 @@ use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 use Exception;
 
+/**
+ * @tags Usuário
+ */
 class LogoutController extends Controller
 {
     public function __construct(private readonly LogoutService $logoutService) {}
 
+    /**
+     * Logout de usuário
+     */
     public function __invoke(): JsonResponse
     {
         try {

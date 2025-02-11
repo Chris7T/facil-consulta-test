@@ -11,11 +11,20 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Pagination\LengthAwarePaginator;
 
+/**
+ * @tags Médico
+ */
 class MedicoListarPacienteController extends Controller
 {
     public function __construct(private readonly PacienteListarPorMedicoService $pacienteListarPorMedicoService) {}
 
+    /**
+     * Listar pacientes do médico
+     * 
+     * @response AnonymousResourceCollection<LengthAwarePaginator<PacienteComConsultaResource>>
+     */
     public function __invoke(MedicoListarPacienteRequest $request, int $medicoId): AnonymousResourceCollection|JsonResponse
     {
         try {

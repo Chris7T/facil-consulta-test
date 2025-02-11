@@ -1,0 +1,806 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Laravel",
+        "version": "0.0.1"
+    },
+    "servers": [
+        {
+            "url": "http:\/\/localhost\/api"
+        }
+    ],
+    "paths": {
+        "\/cidades": {
+            "get": {
+                "operationId": "cidade.cidadeListar",
+                "summary": "Listar Cidades",
+                "tags": [
+                    "Cidade",
+                    "CidadeListar"
+                ],
+                "parameters": [
+                    {
+                        "name": "nome",
+                        "in": "query",
+                        "schema": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "maxLength": 100
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    }
+                }
+            }
+        },
+        "\/cidades\/{cidadeId}\/medicos": {
+            "get": {
+                "operationId": "cidade.cidadeListarMedico",
+                "summary": "Listar m\u00e9dicos da cidade",
+                "tags": [
+                    "Cidade",
+                    "CidadeListarMedico"
+                ],
+                "parameters": [
+                    {
+                        "name": "cidadeId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "nome",
+                        "in": "query",
+                        "schema": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "maxLength": 100
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    }
+                }
+            }
+        },
+        "\/medicos\/consulta": {
+            "post": {
+                "operationId": "consulta.consultaCriar",
+                "summary": "Criar consulta",
+                "tags": [
+                    "Consulta",
+                    "ConsultaCriar"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/ConsultaCriarRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "anyOf": [
+                                        {
+                                            "type": "object"
+                                        },
+                                        {
+                                            "$ref": "#\/components\/schemas\/ConsultaResource"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    }
+                }
+            }
+        },
+        "\/medicos": {
+            "get": {
+                "operationId": "medico.medicoListar",
+                "summary": "Listar m\u00e9dico",
+                "tags": [
+                    "M\u00e9dico",
+                    "MedicoListar"
+                ],
+                "parameters": [
+                    {
+                        "name": "nome",
+                        "in": "query",
+                        "schema": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "maxLength": 100
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    }
+                }
+            },
+            "post": {
+                "operationId": "medico.medicoCriar",
+                "summary": "Criar m\u00e9dico",
+                "tags": [
+                    "M\u00e9dico",
+                    "MedicoCriar"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/MedicoCriarRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    }
+                }
+            }
+        },
+        "\/medicos\/{medicoId}\/pacientes": {
+            "get": {
+                "operationId": "medico.medicoListarPaciente",
+                "summary": "Listar pacientes do m\u00e9dico",
+                "tags": [
+                    "M\u00e9dico",
+                    "MedicoListarPaciente"
+                ],
+                "parameters": [
+                    {
+                        "name": "medicoId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "apenas-agendadas",
+                        "in": "query",
+                        "schema": {
+                            "type": [
+                                "boolean",
+                                "null"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "nome",
+                        "in": "query",
+                        "schema": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "maxLength": 100
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    }
+                }
+            }
+        },
+        "\/pacientes\/{id}": {
+            "put": {
+                "operationId": "paciente.pacienteAtualizar",
+                "summary": "Atualizar dados do paciente",
+                "tags": [
+                    "Paciente",
+                    "PacienteAtualizar"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/PacienteAtualizarRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "anyOf": [
+                                        {
+                                            "type": "object"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#\/components\/schemas\/PacienteResource"
+                                                }
+                                            },
+                                            "required": [
+                                                "data"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    }
+                }
+            }
+        },
+        "\/pacientes": {
+            "post": {
+                "operationId": "paciente.pacienteCriar",
+                "summary": "Atualizar dados do paciente",
+                "tags": [
+                    "Paciente",
+                    "PacienteCriar"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/PacienteCriarRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "message"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    },
+                    "201": {
+                        "description": "`PacienteResource`",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#\/components\/schemas\/PacienteResource"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    }
+                }
+            }
+        },
+        "\/auth\/login": {
+            "post": {
+                "operationId": "auth.login",
+                "summary": "Login de usu\u00e1rio",
+                "tags": [
+                    "Usu\u00e1rio",
+                    "Login"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/LoginRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "message"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "message"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    }
+                }
+            }
+        },
+        "\/auth\/cadastrar": {
+            "post": {
+                "operationId": "auth.cadastrar",
+                "summary": "Cadastro de usu\u00e1rio",
+                "tags": [
+                    "Usu\u00e1rio",
+                    "Cadastrar"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/CadastrarRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ValidationException"
+                    }
+                }
+            }
+        },
+        "\/auth\/logout": {
+            "post": {
+                "operationId": "auth.logout",
+                "summary": "Logout de usu\u00e1rio",
+                "tags": [
+                    "Usu\u00e1rio",
+                    "Logout"
+                ],
+                "responses": {
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "message"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "No content"
+                    },
+                    "401": {
+                        "$ref": "#\/components\/responses\/AuthenticationException"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CadastrarRequest": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "senha": {
+                        "type": "string",
+                        "minLength": 6
+                    }
+                },
+                "required": [
+                    "nome",
+                    "email",
+                    "senha"
+                ],
+                "title": "CadastrarRequest"
+            },
+            "ConsultaCriarRequest": {
+                "type": "object",
+                "properties": {
+                    "medico_id": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "paciente_id": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "data": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    }
+                },
+                "title": "ConsultaCriarRequest"
+            },
+            "ConsultaResource": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "string"
+                    },
+                    "medico_id": {
+                        "type": "string"
+                    },
+                    "medico_nome": {
+                        "type": "string"
+                    },
+                    "paciente_id": {
+                        "type": "string"
+                    },
+                    "paciente_nome": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "data",
+                    "medico_id",
+                    "medico_nome",
+                    "paciente_id",
+                    "paciente_nome",
+                    "created_at",
+                    "updated_at"
+                ],
+                "title": "ConsultaResource"
+            },
+            "LoginRequest": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "senha": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "email",
+                    "senha"
+                ],
+                "title": "LoginRequest"
+            },
+            "MedicoCriarRequest": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string",
+                        "maxLength": 100
+                    },
+                    "especialidade": {
+                        "type": "string",
+                        "maxLength": 100
+                    },
+                    "cidade_id": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "nome",
+                    "especialidade",
+                    "cidade_id"
+                ],
+                "title": "MedicoCriarRequest"
+            },
+            "PacienteAtualizarRequest": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "telefone": {
+                        "type": "string",
+                        "maxLength": 20
+                    }
+                },
+                "required": [
+                    "nome",
+                    "telefone"
+                ],
+                "title": "PacienteAtualizarRequest"
+            },
+            "PacienteCriarRequest": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "cpf": {
+                        "type": "string",
+                        "minLength": 11,
+                        "maxLength": 11
+                    },
+                    "telefone": {
+                        "type": "string",
+                        "maxLength": 20
+                    }
+                },
+                "required": [
+                    "nome",
+                    "cpf",
+                    "telefone"
+                ],
+                "title": "PacienteCriarRequest"
+            },
+            "PacienteResource": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "nome": {
+                        "type": "string"
+                    },
+                    "cpf": {
+                        "type": "string"
+                    },
+                    "telefone": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    }
+                },
+                "required": [
+                    "id",
+                    "nome",
+                    "cpf",
+                    "telefone",
+                    "created_at",
+                    "updated_at"
+                ],
+                "title": "PacienteResource"
+            }
+        },
+        "responses": {
+            "ValidationException": {
+                "description": "Validation error",
+                "content": {
+                    "application\/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Errors overview."
+                                },
+                                "errors": {
+                                    "type": "object",
+                                    "description": "A detailed description of each field that failed validation.",
+                                    "additionalProperties": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "required": [
+                                "message",
+                                "errors"
+                            ]
+                        }
+                    }
+                }
+            },
+            "AuthenticationException": {
+                "description": "Unauthenticated",
+                "content": {
+                    "application\/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Error overview."
+                                }
+                            },
+                            "required": [
+                                "message"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
