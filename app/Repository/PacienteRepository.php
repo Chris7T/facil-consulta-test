@@ -13,7 +13,7 @@ class PacienteRepository
         return Paciente::find($id);
     }
 
-    public function listarPeloMedico(int $medicoId, Carbon $posteriorData = null, ?string $nome = null): LengthAwarePaginator
+    public function listarPeloMedico(int $medicoId, ?Carbon $posteriorData = null, ?string $nome = null): LengthAwarePaginator
     {
         return Paciente::select(['pacientes.*', 'consultas.data', 'consultas.id as consulta_id'])
             ->join('consultas', 'pacientes.id', '=', 'consultas.paciente_id')
