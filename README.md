@@ -65,3 +65,48 @@ Na raiz do projeto, dentro da pasta `/postman`, você encontrará o arquivo da c
 2. Clique em Import
 3. Selecione o arquivo `Facil-Consulta.postman_collection.json`
 4. A collection será importada com todas as rotas configuradas
+
+## Testes
+
+### Executando os Testes
+Para executar os testes, dentro do container Docker:
+```bash
+php artisan test
+```
+
+Para executar um teste específico:
+```bash
+php artisan test --filter NomeDoTeste
+```
+
+### Estrutura dos Testes
+O projeto contém testes unitários para os seguintes serviços:
+
+#### Autenticação
+- `CadastrarServiceTest`: Testa o cadastro de usuários
+- `LoginServiceTest`: Testa o processo de login
+- `LogoutServiceTest`: Testa o processo de logout
+
+#### Cidade
+- `CidadeImportarServiceTest`: Testa a importação de cidades do IBGE
+- `CidadeListarServiceTest`: Testa a listagem de cidades
+
+#### Médico
+- `MedicoCriarServiceTest`: Testa a criação de médicos
+- `MedicoListarPorCidadeServiceTest`: Testa a listagem de médicos por cidade
+
+#### Paciente
+- `PacienteAtualizarServiceTest`: Testa a atualização de dados do paciente
+- `PacienteCriarServiceTest`: Testa a criação de pacientes
+
+#### Consulta
+- `ConsultaCriarServiceTest`: Testa a criação de consultas médicas
+
+### Cobertura dos Testes
+Os testes unitários cobrem:
+- Fluxos de sucesso
+- Tratamento de erros e exceções
+- Validações de negócio
+- Integridade dos dados
+
+Cada teste é isolado usando mocks, garantindo que apenas a unidade em teste está sendo verificada, sem dependências externas como banco de dados ou serviços externos.
